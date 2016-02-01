@@ -28,15 +28,12 @@
 					data: data
 				})
 				.success(function (data, status, headers, config) {
-					console.log(data);
 					return data;
 				})
 				.error(function (data, status, headers, config) {
-					console.log(data);
 					return data;
 				});
 
-			console.log(serializedParams);
 		}
 
 		function constructURL(type) {
