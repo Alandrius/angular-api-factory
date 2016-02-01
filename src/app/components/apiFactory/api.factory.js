@@ -3,7 +3,7 @@
 
 	angular
 		.module('angularApiFactory')
-		.service('apiFactory', apiFactory);
+		.factory('apiFactory', apiFactory);
 
 	/** @ngInject */
 	function apiFactory($rootScope, $http, CONFIG) {

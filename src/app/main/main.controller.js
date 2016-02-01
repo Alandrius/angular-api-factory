@@ -6,23 +6,95 @@
 		.controller('MainController', MainController);
 
 	/** @ngInject */
-	function MainController($scope, apiFactory) {
-		
+	function MainController($scope, apiFactory, errorsHandler) {
+
 		$scope.output = [];
-		
-		var callParamsChannels = {
-				part: "snippet",
-				forUsername: "pewdiepie"
-			},
-			callParamsActivities = {
+
+		$scope.getActivities = function () {
+			
+			var callParamsActivities = {
 				part: "snippet",
 				home: true
 			};
-		apiFactory.makeAPICall('ACTIVITIES', callParamsActivities).then(function (response) {
-			console.log("aa", response);
-		}, function (response) {
-			console.log("bb", response);
-		});
-		//apiFactory.makeAPICall('CHANNELS', callParamsChannels);
+			
+			$scope.output = [];
+
+			apiFactory.makeAPICall('ACTIVITIES', callParamsActivities).then(function (response) {
+				$scope.output = response.data.items;
+			}, function (response) {
+				errorsHandler.showError(response);
+			});
+			
+		};
+		
+		$scope.getChanels = function () {
+			
+			var callParamsChanels = {
+				part: "snippet",
+				forUsername: "pewdiepie"
+			};
+			
+			$scope.output = [];
+
+			apiFactory.makeAPICall('CHANNELS', callParamsChanels).then(function (response) {
+				$scope.output = response.data.items;
+			}, function (response) {
+				errorsHandler.showError(response);
+			});
+			
+		};
+		
+		$scope.postComment = function () {
+			
+			var params = {
+				part: "snippet",
+				home: true
+			};
+			
+			$scope.output = [];
+
+			apiFactory.makeAPICall('COMMENTS', params, $scope.comment ).then(function (response) {
+				
+			}, function (response) {
+				errorsHandler.showError(response);
+			});
+			
+		};
+		
+		$scope.updateCaption = function () {
+			
+			var params = {
+				part: "snippet",
+				home: true
+			};
+			
+			$scope.output = [];
+
+			apiFactory.makeAPICall('CAPTIONS', params, $scope.caption).then(function (response) {
+				
+			}, function (response) {
+				errorsHandler.showError(response);
+			});
+			
+		};
+		
+		$scope.deletePlaylist = function () {
+			
+			var params = {
+				part: "snippet",
+				home: true
+			};
+			
+			$scope.output = [];
+
+			apiFactory.makeAPICall('PLAYLISTS', params).then(function (response) {
+				
+			}, function (response) {
+				errorsHandler.showError(response);
+			});
+			
+		};
+
+
 	}
 })();
