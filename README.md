@@ -6,4 +6,7 @@ components/errorsHandler.service.js - my small service for displaying error mess
 
 PLEASE NOTE: There are few different REST points configured in app/index.constants.js. 2 GET requests are working, another added just for demo and display errors. You should replace auth token in index.constants.js to be able to make GET requests. This token you can generate here https://any-api.com/consoles/googleapis.com/youtube/v3.
 
-To compile and run please use "gulp serve" command.
+To compile and run please do the following:
+1) npm install
+2) bower install
+3) gulp serve
